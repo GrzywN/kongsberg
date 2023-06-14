@@ -1,4 +1,4 @@
-import { UserSchema } from '../schemas/users.schema';
+import { UserSchema } from '../schemas';
 
 export const parseOneUser = (data: unknown) => {
   return UserSchema.parse(data);
