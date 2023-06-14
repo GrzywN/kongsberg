@@ -1,10 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { KeyboardEvent } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { usePostsQuery } from '../../hooks/queries/use-posts-query';
 
 export function StepPosts() {
   const { userId } = useParams();
   const { isLoading, isError, data: postsData } = usePostsQuery(userId);
+  const navigate = useNavigate();
 
   if (isError) {
     return <caption>An error occurred!</caption>;
@@ -13,6 +15,22 @@ export function StepPosts() {
   if (isLoading || !postsData) {
     return <caption>Loading...</caption>;
   }
+
+  const handlePostRowClick = () => {
+    return (postId: number) => {
+      navigate(`/comments/${postId}`);
+    };
+  };
+
+  const handlePostRowKeyboardPress = (event: KeyboardEvent) => {
+    const ENTER = 'Enter';
+
+    return (postId: number) => {
+      if (event.key === ENTER) {
+        navigate(`/comments/${postId}`);
+      }
+    };
+  };
 
   return (
     <>
@@ -34,6 +52,8 @@ export function StepPosts() {
               key={post.id}
               role="button"
               tabIndex={0}
+              onClick={() => handlePostRowClick()(post.id)}
+              onKeyDown={(e) => handlePostRowKeyboardPress(e)(post.id)}
             >
               <td className="px-6 py-4">{post.title}</td>
               <td className="pr-6 py-4 grid md:flex gap-2">

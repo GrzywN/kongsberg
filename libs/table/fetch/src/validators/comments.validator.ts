@@ -1,9 +1,9 @@
-import { CommentSchema } from '../schemas/comments.schema';
+import { CommentSchema } from '../schemas';
 
-export const parseComments = (data: unknown) => {
+export const parseAllComments = (data: unknown) => {
   if (Array.isArray(data)) {
     return data.map((comment) => CommentSchema.parse(comment));
   }
 
-  return CommentSchema.parse(data);
+  throw new Error('parseAllComments: Expected data to be an array');
 };
