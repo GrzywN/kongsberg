@@ -65,7 +65,7 @@ export function TableRowAccordion(props: TableRowAccordionProps) {
         })}
       </tr>
       {isOpen && (
-        <tr className="bg-white cursor-auto hover:bg-neutral-300 even:bg-neutral-50 odd:bg-neutral-100 border-b-2 border-neutral-400">
+        <tr className="bg-white cursor-auto even:bg-neutral-50 odd:bg-neutral-100 border-b-2 border-neutral-400">
           <td className="px-6 py-4" colSpan={cols.length}>
             <p className="max-w-prose">{detailsBody}</p>
           </td>
