@@ -1,21 +1,22 @@
 export const routes = {
   home: {
-    path: "/"
+    path: '/',
   },
   table: {
     users: {
-      path: "/table/users",
+      path: '/table/users',
     },
     posts: {
-      path: "/table/posts",
-      dynamicPath: "/table/posts/:userId",
-      url: (userId: string) => "/table/posts/:userId".replace(':userId', userId)
+      path: '/table/users/:userId/posts',
+      url: (userId: string) =>
+        '/table/users/:userId/posts'.replace(':userId', userId),
     },
     comments: {
-      path: "/table/comments",
-      dynamicPath: "/table/comments/:postId",
-      url: (postId: string) => "/table/comments/:postId".replace(':postId', postId)
+      path: '/table/users/:userId/posts/:postId/comments',
+      url: (userId: string, postId: string) =>
+        '/table/users/:userId/posts/:postId/comments'
+          .replace(':userId', userId)
+          .replace(':postId', postId),
     },
   },
-
 };

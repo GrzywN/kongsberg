@@ -27,6 +27,7 @@ export function StepComments() {
       fetchNextPage();
     }
   }, [entry, fetchNextPage]);
+
   if (isError) {
     return <caption>An error occurred!</caption>;
   }

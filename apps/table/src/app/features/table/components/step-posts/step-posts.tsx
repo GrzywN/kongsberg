@@ -42,14 +42,14 @@ export function StepPosts() {
 
   const handleGoToPostCommentsClick = () => {
     return (postId: number) => {
-      navigate(routes.table.comments.url(String(postId)));
+      navigate(routes.table.comments.url(String(userId), String(postId)));
     };
   };
 
   const handleGoToPostCommentsKeyboardPress = (event: KeyboardEvent) => {
     return (postId: number) => {
       if (event.key === ENTER) {
-        navigate(routes.table.comments.url(String(postId)));
+        navigate(routes.table.comments.url(String(userId), String(postId)));
       }
     };
   };
