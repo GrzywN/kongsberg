@@ -1,3 +1,5 @@
+import { useIntersection } from '@mantine/hooks';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
@@ -6,8 +8,25 @@ import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepComments() {
   const { postId } = useParams();
-  const { isLoading, isError, data: commentsData } = useCommentsQuery(postId);
+  const {
+    isLoading,
+    isError,
+    data: commentsData,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useCommentsQuery(postId);
 
+  const lastPostRef = useRef<HTMLElement>(null);
+  const { ref, entry } = useIntersection({
+    root: lastPostRef.current,
+    threshold: 1,
+  });
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage]);
   if (isError) {
     return <caption>An error occurred!</caption>;
   }
@@ -15,6 +34,8 @@ export function StepComments() {
   if (isLoading || !commentsData) {
     return <caption>Loading...</caption>;
   }
+
+  const _commentsData = commentsData.pages.flatMap((page) => page);
 
   return (
     <>
@@ -29,14 +50,20 @@ export function StepComments() {
         </tr>
       </thead>
       <tbody>
-        {commentsData.map((comment) => (
+        {_commentsData.map((comment) => (
           <TableRowAccordion
             key={comment.id}
             itemKey={comment.id}
             cols={[comment.name, comment.email]}
             detailsBody={<CommentBody comment={comment} />}
+            ref={ref}
           />
         ))}
+        {isFetchingNextPage && (
+          <tr>
+            <td>Next page is loading...</td>
+          </tr>
+        )}
       </tbody>
     </>
   );

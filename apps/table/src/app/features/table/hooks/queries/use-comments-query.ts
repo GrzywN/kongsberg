@@ -1,16 +1,24 @@
 import {
   Comment,
-  fetchAllComments,
+  fetchComments,
   parseAllComments,
 } from '@kongsberg/table/fetch';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
 export function useCommentsQuery(postId?: string) {
-  return useQuery<Comment[]>(['comments', postId], async () => {
-    const response = await fetchAllComments(postId);
+  return useInfiniteQuery<Comment[]>(
+    ['posts', postId],
+    async ({ pageParam = 1 }) => {
+      const response = await fetchComments(pageParam, postId);
 
-    return parseAllComments(response);
-  });
+      return parseAllComments(response);
+    },
+    {
+      getNextPageParam: (_, pages) => {
+        return pages.length + 1;
+      },
+    }
+  );
 }
 
 export default useCommentsQuery;
