@@ -19,13 +19,13 @@ export function StepUsers() {
     return <caption>Loading...</caption>;
   }
 
-  const handleUserRowClick = () => {
+  const handleGoToUserPostsClick = () => {
     return (userId: number) => {
       navigate(routes.table.posts.url(String(userId)));
     };
   };
 
-  const handleUserRowKeyboardPress = (event: KeyboardEvent) => {
+  const handleGoToUserPostsKeyboardPress = (event: KeyboardEvent) => {
     return (userId: number) => {
       if (event.key === ENTER) {
         navigate(routes.table.posts.url(String(userId)));
@@ -66,7 +66,8 @@ export function StepUsers() {
               user.phone,
               <TableNextStepButton
                 text="See user posts"
-                onKeyDown={(e) => handleUserRowKeyboardPress(e)(user.id)}
+                onClick={() => handleGoToUserPostsClick()(user.id)}
+                onKeyDown={(e) => handleGoToUserPostsKeyboardPress(e)(user.id)}
               />,
             ]}
             detailsBody={JSON.stringify(user.address)}

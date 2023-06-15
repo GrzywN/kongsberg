@@ -19,14 +19,13 @@ export function StepPosts() {
   if (isLoading || !postsData) {
     return <caption>Loading...</caption>;
   }
-
-  const handlePostRowClick = () => {
+  const handleGoToPostCommentsClick = () => {
     return (postId: number) => {
       navigate(routes.table.comments.url(String(postId)));
     };
   };
 
-  const handlePostRowKeyboardPress = (event: KeyboardEvent) => {
+  const handleGoToPostCommentsKeyboardPress = (event: KeyboardEvent) => {
     return (postId: number) => {
       if (event.key === ENTER) {
         navigate(routes.table.comments.url(String(postId)));
@@ -56,7 +55,8 @@ export function StepPosts() {
                 post.title,
                 <TableNextStepButton
                   text="See post comments"
-                  onKeyDown={(e) => handlePostRowKeyboardPress(e)(post.id)}
+                  onClick={() => handleGoToPostCommentsClick()(post.id)}
+                  onKeyDown={(e) => handleGoToPostCommentsKeyboardPress(e)(post.id)}
                 />,
               ]}
               detailsBody={post.body}
