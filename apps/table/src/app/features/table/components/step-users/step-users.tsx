@@ -1,4 +1,5 @@
-import { KeyboardEvent } from 'react';
+import { useIntersection } from '@mantine/hooks';
+import { KeyboardEvent, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
@@ -9,8 +10,26 @@ import { TableNextStepButton } from '../table-next-step-button/table-next-step-b
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepUsers() {
-  const { isLoading, isError, data: usersData } = useUsersQuery();
+  const {
+    isLoading,
+    isError,
+    data: usersData,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useUsersQuery();
   const navigate = useNavigate();
+
+  const lastUserRef = useRef<HTMLElement>(null);
+  const { ref, entry } = useIntersection({
+    root: lastUserRef.current,
+    threshold: 1,
+  });
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage]);
 
   if (isError) {
     return <caption>An error occurred!</caption>;
@@ -34,6 +53,8 @@ export function StepUsers() {
     };
   };
 
+  const _usersData = usersData.pages.flatMap((page) => page);
+
   return (
     <>
       <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
@@ -56,7 +77,7 @@ export function StepUsers() {
         </tr>
       </thead>
       <tbody>
-        {usersData.map((user) => (
+        {_usersData.map((user) => (
           <TableRowAccordion
             key={user.id}
             itemKey={user.id}
@@ -71,11 +92,15 @@ export function StepUsers() {
                 onKeyDown={(e) => handleGoToUserPostsKeyboardPress(e)(user.id)}
               />,
             ]}
-            detailsBody={
-              <DetailedUserInfo user={user} />
-            }
+            detailsBody={<DetailedUserInfo user={user} />}
+            ref={ref}
           />
         ))}
+        {isFetchingNextPage && (
+          <tr>
+            <td>Next page is loading...</td>
+          </tr>
+        )}
       </tbody>
     </>
   );

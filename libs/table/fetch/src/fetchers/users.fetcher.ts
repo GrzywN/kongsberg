@@ -1,15 +1,10 @@
 import axios from 'axios';
 
-import { usersEndpoint } from '../endpoints/users.endpoint';
+import { getUsersPageEndpoint } from '../endpoints/users.endpoint';
 
-export async function fetchOneUser(id: string): Promise<unknown> {
-  const response = await axios.get(`${usersEndpoint}/${id}`);
-
-  return response.data;
-}
-
-export async function fetchAllUsers(): Promise<unknown> {
-  const response = await axios.get(usersEndpoint);
+export async function fetchUsers(page: number): Promise<unknown> {
+  const response = await axios.get(getUsersPageEndpoint(page, 6));
+  // await new Promise((resolve) => setTimeout(resolve, 500));
 
   return response.data;
 }

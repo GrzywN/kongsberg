@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 
 export interface TableRowAccordionProps {
   itemKey: string | number;
@@ -8,7 +8,10 @@ export interface TableRowAccordionProps {
   detailsBody: React.ReactNode;
 }
 
-export function TableRowAccordion(props: TableRowAccordionProps) {
+export const TableRowAccordion = forwardRef<
+  HTMLElement,
+  TableRowAccordionProps
+>((props, ref) => {
   const { itemKey, onClick, onKeyDown, cols, detailsBody } = props;
   const [isOpen, setIsOpen] = useState(false);
 
@@ -51,7 +54,7 @@ export function TableRowAccordion(props: TableRowAccordionProps) {
 
           if (idx === cols.length - 1) {
             return (
-              <td className="pr-6 py-4 grid md:flex gap-2" key={idx}>
+              <td className="pr-6 py-4 grid md:flex gap-2" key={idx} ref={ref}>
                 {col}
               </td>
             );
@@ -73,6 +76,6 @@ export function TableRowAccordion(props: TableRowAccordionProps) {
       )}
     </>
   );
-}
+});
 
 export default TableRowAccordion;
