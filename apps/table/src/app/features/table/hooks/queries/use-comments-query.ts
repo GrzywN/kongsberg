@@ -1,7 +1,7 @@
 import {
   Comment,
   fetchComments,
-  parseAllComments,
+  parseComments,
 } from '@kongsberg/table/fetch';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -11,7 +11,7 @@ export function useCommentsQuery(postId?: string) {
     async ({ pageParam = 1 }) => {
       const response = await fetchComments(pageParam, postId);
 
-      return parseAllComments(response);
+      return parseComments(response);
     },
     {
       getNextPageParam: (_, pages) => {

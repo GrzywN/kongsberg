@@ -1,4 +1,4 @@
-import { User, fetchUsers, parseAllUsers } from '@kongsberg/table/fetch';
+import { User, fetchUsers, parseUsers } from '@kongsberg/table/fetch';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export function useUsersQuery() {
@@ -7,7 +7,7 @@ export function useUsersQuery() {
     async ({ pageParam = 1 }) => {
       const response = await fetchUsers(pageParam);
 
-      return parseAllUsers(response);
+      return parseUsers(response);
     },
     {
       getNextPageParam: (_, pages) => {

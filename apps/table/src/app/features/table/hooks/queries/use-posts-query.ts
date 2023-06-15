@@ -1,4 +1,4 @@
-import { Post, fetchPosts, parseAllPosts } from '@kongsberg/table/fetch';
+import { Post, fetchPosts, parsePosts } from '@kongsberg/table/fetch';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 export function usePostsQuery(userId?: string) {
@@ -7,7 +7,7 @@ export function usePostsQuery(userId?: string) {
     async ({ pageParam = 1 }) => {
       const response = await fetchPosts(pageParam, userId);
 
-      return parseAllPosts(response);
+      return parsePosts(response);
     },
     {
       getNextPageParam: (_, pages) => {

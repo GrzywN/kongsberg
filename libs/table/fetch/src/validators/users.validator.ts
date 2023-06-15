@@ -1,12 +1,12 @@
 import { UserSchema } from '../schemas';
 
-export const parseOneUser = (data: unknown) => {
+export const parseUser = (data: unknown) => {
   return UserSchema.parse(data);
 };
 
-export const parseAllUsers = (data: unknown) => {
+export const parseUsers = (data: unknown) => {
   if (Array.isArray(data)) {
-    return data.map((comment) => UserSchema.parse(comment));
+    return data.map((comment) => parseUser(comment));
   }
 
   throw new Error('parseUsers: Expected data to be an array');
