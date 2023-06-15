@@ -1,6 +1,8 @@
 import { KeyboardEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { ENTER } from '../../../../shared/utils/constants';
+import { routes } from '../../../../shared/utils/routes';
 import { useUsersQuery } from '../../hooks/queries/use-users-query';
 import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
@@ -19,16 +21,14 @@ export function StepUsers() {
 
   const handleUserRowClick = () => {
     return (userId: number) => {
-      navigate(`/posts/${userId}`);
+      navigate(routes.table.posts.url(String(userId)));
     };
   };
 
   const handleUserRowKeyboardPress = (event: KeyboardEvent) => {
-    const ENTER = 'Enter';
-
     return (userId: number) => {
       if (event.key === ENTER) {
-        navigate(`/posts/${userId}`);
+        navigate(routes.table.posts.url(String(userId)));
       }
     };
   };
