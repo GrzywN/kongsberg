@@ -4,7 +4,7 @@ export interface TableNextStepButtonProps
 }
 
 export function TableNextStepButton(props: TableNextStepButtonProps) {
-  const { type = 'button', className, ...passThroughProps } = props;
+  const { type = 'button', className, text, ...passThroughProps } = props;
 
   return (
     <button
@@ -12,7 +12,7 @@ export function TableNextStepButton(props: TableNextStepButtonProps) {
       type={type}
       {...passThroughProps}
     >
-      See its posts
+      {text}
     </button>
   );
 }

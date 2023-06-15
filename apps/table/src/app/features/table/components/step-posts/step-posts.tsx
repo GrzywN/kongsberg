@@ -55,7 +55,7 @@ export function StepPosts() {
               cols={[
                 post.title,
                 <TableNextStepButton
-                  onClick={() => handlePostRowClick()(post.id)}
+                  text="See post comments"
                   onKeyDown={(e) => handlePostRowKeyboardPress(e)(post.id)}
                 />,
               ]}

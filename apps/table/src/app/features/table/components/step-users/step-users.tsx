@@ -65,7 +65,7 @@ export function StepUsers() {
               user.email,
               user.phone,
               <TableNextStepButton
-                onClick={() => handleUserRowClick()(user.id)}
+                text="See user posts"
                 onKeyDown={(e) => handleUserRowKeyboardPress(e)(user.id)}
               />,
             ]}
