@@ -46,9 +46,23 @@ export function App() {
                     <StepPosts />
                   </Suspense>
                 }
+              /><Route
+                path={routes.table.posts.dynamicPath}
+                element={
+                  <Suspense fallback={<caption>Is loading...</caption>}>
+                    <StepPosts />
+                  </Suspense>
+                }
               />
               <Route
                 path={routes.table.comments.path}
+                element={
+                  <Suspense fallback={<caption>Is loading...</caption>}>
+                    <StepComments />
+                  </Suspense>
+                }
+              /><Route
+                path={routes.table.comments.dynamicPath}
                 element={
                   <Suspense fallback={<caption>Is loading...</caption>}>
                     <StepComments />
