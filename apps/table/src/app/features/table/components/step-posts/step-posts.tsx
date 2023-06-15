@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
 import { usePostsQuery } from '../../hooks/queries/use-posts-query';
+import { PostBody } from '../post-body/post-body';
 import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
@@ -56,10 +57,12 @@ export function StepPosts() {
                 <TableNextStepButton
                   text="See post comments"
                   onClick={() => handleGoToPostCommentsClick()(post.id)}
-                  onKeyDown={(e) => handleGoToPostCommentsKeyboardPress(e)(post.id)}
+                  onKeyDown={(e) =>
+                    handleGoToPostCommentsKeyboardPress(e)(post.id)
+                  }
                 />,
               ]}
-              detailsBody={post.body}
+              detailsBody={<PostBody post={post} />}
             />
           );
         })}
