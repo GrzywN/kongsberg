@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
 import { useUsersQuery } from '../../hooks/queries/use-users-query';
+import { DetailedUserInfo } from '../detailed-user-info/detailed-user-info';
 import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
@@ -70,7 +71,9 @@ export function StepUsers() {
                 onKeyDown={(e) => handleGoToUserPostsKeyboardPress(e)(user.id)}
               />,
             ]}
-            detailsBody={JSON.stringify(user.address)}
+            detailsBody={
+              <DetailedUserInfo user={user} />
+            }
           />
         ))}
       </tbody>
