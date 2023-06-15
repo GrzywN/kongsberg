@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
+import { CommentBody } from '../comment-body/comment-body';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepComments() {
@@ -32,11 +33,8 @@ export function StepComments() {
           <TableRowAccordion
             key={comment.id}
             itemKey={comment.id}
-            cols={[
-              comment.name,
-              comment.email
-            ]}
-            detailsBody={comment.body}
+            cols={[comment.name, comment.email]}
+            detailsBody={<CommentBody comment={comment} />}
           />
         ))}
       </tbody>
