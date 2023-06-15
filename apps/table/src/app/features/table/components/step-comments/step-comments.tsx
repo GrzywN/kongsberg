@@ -23,7 +23,7 @@ export function StepComments() {
           <th scope="col" className="px-6 py-3">
             Comment title
           </th>
-          <th scope="col" className="px-6 py-3">
+          <th scope="col" className="px-6 py-3 text-right">
             Email
           </th>
         </tr>
