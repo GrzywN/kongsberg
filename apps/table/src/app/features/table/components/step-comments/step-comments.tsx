@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import useCommentsQuery from '../../hooks/queries/use-comments-query';
+import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
+import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepComments() {
   const { postId } = useParams();
@@ -14,7 +15,33 @@ export function StepComments() {
     return <caption>Loading...</caption>;
   }
 
-  return <caption>{JSON.stringify(commentsData)}</caption>;
+  return (
+    <>
+      <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
+        <tr>
+          <th scope="col" className="px-6 py-3">
+            Comment title
+          </th>
+          <th scope="col" className="px-6 py-3">
+            Email
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {commentsData.map((comment) => (
+          <TableRowAccordion
+            key={comment.id}
+            itemKey={comment.id}
+            cols={[
+              comment.name,
+              comment.email
+            ]}
+            detailsBody={comment.body}
+          />
+        ))}
+      </tbody>
+    </>
+  );
 }
 
 export default StepComments;
