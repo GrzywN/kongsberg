@@ -1,4 +1,5 @@
-import { KeyboardEvent } from 'react';
+import { useIntersection } from '@mantine/hooks';
+import { KeyboardEvent, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
@@ -10,8 +11,26 @@ import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepPosts() {
   const { userId } = useParams();
-  const { isLoading, isError, data: postsData } = usePostsQuery(userId);
+  const {
+    isLoading,
+    isError,
+    data: postsData,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = usePostsQuery(userId);
   const navigate = useNavigate();
+
+  const lastPostRef = useRef<HTMLElement>(null);
+  const { ref, entry } = useIntersection({
+    root: lastPostRef.current,
+    threshold: 1,
+  });
+
+  useEffect(() => {
+    if (entry?.isIntersecting) {
+      fetchNextPage();
+    }
+  }, [entry, fetchNextPage]);
 
   if (isError) {
     return <caption>An error occurred!</caption>;
@@ -20,6 +39,7 @@ export function StepPosts() {
   if (isLoading || !postsData) {
     return <caption>Loading...</caption>;
   }
+
   const handleGoToPostCommentsClick = () => {
     return (postId: number) => {
       navigate(routes.table.comments.url(String(postId)));
@@ -34,6 +54,8 @@ export function StepPosts() {
     };
   };
 
+  const _postsData = postsData.pages.flatMap((page) => page);
+
   return (
     <>
       <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
@@ -47,7 +69,7 @@ export function StepPosts() {
         </tr>
       </thead>
       <tbody>
-        {postsData.map((post) => {
+        {_postsData.map((post) => {
           return (
             <TableRowAccordion
               key={post.id}
@@ -63,9 +85,15 @@ export function StepPosts() {
                 />,
               ]}
               detailsBody={<PostBody post={post} />}
+              ref={ref}
             />
           );
         })}
+        {isFetchingNextPage && (
+          <tr>
+            <td>Next page is loading...</td>
+          </tr>
+        )}
       </tbody>
     </>
   );
