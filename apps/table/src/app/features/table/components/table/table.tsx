@@ -1,19 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-export interface TableProps {
-  children?: React.ReactNode;
-}
+import { Breadcrumbs } from '../breadcrumbs/breadcrumbs';
 
-export function Table(props: TableProps) {
-  const { children = "" } = props;
-
+export function Table() {
   return (
-    <div className="bg-white relative overflow-x-auto shadow-md sm:rounded-lg h-[37.125rem]">
-      <table className="w-full text-sm text-left text-neutral-700 font-semibold">
-        {children}
-        <Outlet />
-      </table>
-    </div>
+    <section className="grid text-sm text-left text-neutral-700 font-semibold">
+      <Breadcrumbs />
+      <div className="bg-white relative overflow-x-auto shadow-md sm:rounded-lg h-[37.125rem]">
+        <table className="w-full">
+          <Outlet />
+        </table>
+      </div>
+    </section>
   );
 }
 
