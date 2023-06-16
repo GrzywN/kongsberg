@@ -1,3 +1,4 @@
+import { Hero } from '@kongsberg/shared/ui';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -21,7 +22,25 @@ export function AppRoutes() {
         path={routes.home.path}
         element={<h1>And this is the home page! Go to /table/users</h1>}
       />
-      <Route path="table" element={<Table />}>
+      <Route
+        path="table"
+        element={
+          <>
+            <Hero
+              title="Select a user and see his posts"
+              subtitle={
+                <>
+                  After that you can select a post and see its comments{' '}
+                  <span role="img" aria-label="Shushing Face">
+                    🤫
+                  </span>
+                </>
+              }
+            />
+            <Table />
+          </>
+        }
+      >
         <Route
           path={routes.table.users.path}
           element={
