@@ -6,7 +6,6 @@
     "start:table": "nx serve table",
     "build:table": "nx build table",
     "test:table": "nx test table",
-    "e2e:table": "nx e2e table-e2e",
     "format:check": "nx format:check",
     "format:fix": "nx format:write",
     "lint:check": "nx affected:lint",
