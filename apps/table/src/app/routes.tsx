@@ -2,6 +2,7 @@ import { Hero } from '@kongsberg/shared/ui';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { RecruitmentTaskView } from './features/recruitment-task/containers/recruitment-task-view/recruitment-task-view';
 import { Table } from './features/table/components/table/table';
 import { routes } from './shared/utils/routes';
 
@@ -18,10 +19,7 @@ const StepComments = lazy(
 export function AppRoutes() {
   return (
     <Routes>
-      <Route
-        path={routes.home.path}
-        element={<h1>And this is the home page! Go to /table/users</h1>}
-      />
+      <Route path={routes.home.path} element={<RecruitmentTaskView />} />
       <Route
         path="table"
         element={
