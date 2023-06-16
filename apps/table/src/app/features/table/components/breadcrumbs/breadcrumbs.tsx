@@ -11,7 +11,7 @@ export function Breadcrumbs() {
   const commentsText = 'Comments';
 
   return (
-    <nav className="bg-white mr-auto shadow-md sm:rounded-lg p-4 mb-2 uppercase text-primary-900 font-bold">
+    <nav className="bg-white mr-auto shadow-md rounded-md p-4 mb-2 uppercase text-primary-900 font-bold">
       <Link className="underline" to={routes.table.users.path}>
         {usersText}
       </Link>

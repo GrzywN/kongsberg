@@ -97,7 +97,19 @@ export function StepUsers() {
                     }
                   />,
                 ]}
-                detailsBody={<DetailedUserInfo user={user} />}
+                detailsBody={
+                  <>
+                    <DetailedUserInfo user={user} />
+                    <TableNextStepButton
+                      className="mt-4 lg:hidden"
+                      text="See user posts"
+                      onClick={() => handleGoToUserPostsClick()(user.id)}
+                      onKeyDown={(e) =>
+                        handleGoToUserPostsKeyboardPress(e)(user.id)
+                      }
+                    />
+                  </>
+                }
                 ref={ref}
               />
             ))}

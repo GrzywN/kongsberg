@@ -87,7 +87,19 @@ export function StepPosts() {
                       }
                     />,
                   ]}
-                  detailsBody={<PostBody post={post} />}
+                  detailsBody={
+                    <>
+                      <PostBody post={post} />
+                      <TableNextStepButton
+                        className="mt-4 lg:hidden"
+                        text="See user posts"
+                        onClick={() => handleGoToPostCommentsClick()(post.id)}
+                        onKeyDown={(e) =>
+                          handleGoToPostCommentsKeyboardPress(e)(post.id)
+                        }
+                      />
+                    </>
+                  }
                   ref={ref}
                 />
               );

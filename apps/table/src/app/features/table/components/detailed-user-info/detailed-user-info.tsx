@@ -8,7 +8,7 @@ export interface DetailedUserInfoProps {
 
 export function DetailedUserInfo(props: DetailedUserInfoProps) {
   const { user } = props;
-  const { name, username, email, address, phone, website, company } = user;
+  const { id, name, username, email, address, phone, website, company } = user;
 
   return (
     <div>
@@ -16,6 +16,7 @@ export function DetailedUserInfo(props: DetailedUserInfoProps) {
         {name} (Detailed info)
       </h2>
       <div className="mt-4 grid gap-2">
+        <UserInfoField label="ID" text={id} />
         <UserInfoField label="Name" text={name} />
         <UserInfoField label="Username" text={username} />
         <UserInfoField label="Email" text={email} />

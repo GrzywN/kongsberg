@@ -6,11 +6,13 @@ export interface PostBodyProps {
 
 export function PostBody(props: PostBodyProps) {
   const { post } = props;
-  const { title, body } = post;
+  const { id, title, body } = post;
 
   return (
     <div>
-      <h2 className="text-lg text-primary-900 uppercase font-bold">{title}</h2>
+      <h2 className="text-lg text-primary-900 uppercase font-bold">
+        {title} (Post ID: {id})
+      </h2>
       <div className="mt-4 grid gap-2 max-w-prose">
         <p>{body}</p>
       </div>

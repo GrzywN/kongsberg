@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mantine/hooks';
 import { forwardRef, useState } from 'react';
 
 export interface TableRowAccordionProps {
@@ -14,6 +15,7 @@ export const TableRowAccordion = forwardRef<
 >((props, ref) => {
   const { itemKey, onClick, onKeyDown, cols, detailsBody } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const shouldDisplayDetailsOnly = useMediaQuery('(max-width: 1023px)');
 
   const handleClick = (e: React.MouseEvent) => {
     setIsOpen((prevState) => !prevState);
@@ -42,28 +44,23 @@ export const TableRowAccordion = forwardRef<
         key={itemKey}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
+        ref={ref}
       >
-        {cols.map((col, idx) => {
-          if (idx === cols.length - 1) {
-            return (
-              <td
-                className="px-6 py-4 grid md:flex justify-end gap-2"
-                key={idx}
-                ref={ref}
-              >
-                {col}
-              </td>
-            );
-          }
-
-          return (
-            <td className="px-6 py-4" key={idx}>
+        {!shouldDisplayDetailsOnly &&
+          cols.map((col, idx) => (
+            <td
+              className={`px-6 py-4 ${
+                idx === cols.length - 1
+                  ? 'px-6 py-4 grid md:flex justify-end gap-2'
+                  : ''
+              }`}
+              key={idx}
+            >
               {col}
             </td>
-          );
-        })}
+          ))}
       </tr>
-      {isOpen && (
+      {(shouldDisplayDetailsOnly || isOpen) && (
         <tr className="bg-white cursor-auto even:bg-neutral-50 odd:bg-neutral-100 border-b-2 border-neutral-400">
           <td className="px-6 py-4" colSpan={cols.length}>
             {detailsBody}
