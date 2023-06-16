@@ -15,5 +15,5 @@ module.exports = {
       danger: colors.red,
     }
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')]
 };
