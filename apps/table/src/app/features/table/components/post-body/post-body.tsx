@@ -11,7 +11,7 @@ export function PostBody(props: PostBodyProps) {
   return (
     <div>
       <h2 className="text-lg text-primary-900 uppercase font-bold">{title}</h2>
-      <div className="mt-4 grid gap-2">
+      <div className="mt-4 grid gap-2 max-w-prose">
         <p>{body}</p>
       </div>
     </div>
