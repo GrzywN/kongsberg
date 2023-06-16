@@ -10,7 +10,7 @@ export interface TableRowAccordionProps {
 }
 
 export const TableRowAccordion = forwardRef<
-  HTMLElement,
+  HTMLTableRowElement,
   TableRowAccordionProps
 >((props, ref) => {
   const { itemKey, onClick, onKeyDown, cols, detailsBody } = props;
