@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kongsberg/shared/testing": ["libs/shared/testing/src/index.ts"],
       "@kongsberg/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@kongsberg/table/fetch": ["libs/table/fetch/src/index.ts"]
     }

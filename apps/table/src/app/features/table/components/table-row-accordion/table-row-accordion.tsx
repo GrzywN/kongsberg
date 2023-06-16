@@ -47,7 +47,7 @@ export const TableRowAccordion = forwardRef<
         ref={ref}
       >
         {!shouldDisplayDetailsOnly &&
-          cols.map((col, idx) => (
+          cols?.map((col, idx) => (
             <td
               className={`px-6 py-4 ${
                 idx === cols.length - 1
