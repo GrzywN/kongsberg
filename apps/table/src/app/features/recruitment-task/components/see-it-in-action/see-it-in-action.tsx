@@ -1,15 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Button } from '@kongsberg/shared/ui';
+import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../../../../shared/utils/routes';
 
 export function SeeItInAction() {
+  const navigate = useNavigate();
+
   return (
-    <Link
-      to={routes.table.users.path}
-      className="no-underline cursor-pointer transition-colors bg-white hover:bg-neutral-100 text-primary-900 p-4 rounded-lg md:w-max"
-    >
+    <Button color="light" onClick={() => navigate(routes.table.users.path)}>
       See it in action
-    </Link>
+    </Button>
   );
 }
 

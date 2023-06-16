@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Button } from '@kongsberg/shared/ui';
+import { useNavigate } from 'react-router-dom';
 
 import { routes } from '../../utils/routes';
 
 export function RecruitmentTaskButton() {
+  const navigate = useNavigate();
+
   return (
     <nav className="fixed left-8 top-8">
-      <Link
-        className="font-bold uppercase no-underline cursor-pointer transition-colors bg-white hover:bg-neutral-100 text-primary-900 p-4 rounded-lg md:w-max"
-        to={routes.home.path}
-      >
+      <Button color="light" onClick={() => navigate(routes.home.path)}>
         ← Recruitment task
-      </Link>
+      </Button>
     </nav>
   );
 }
