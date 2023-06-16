@@ -1,9 +1,8 @@
-import { Hero } from '@kongsberg/shared/ui';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { RecruitmentTaskView } from './features/recruitment-task/containers/recruitment-task-view/recruitment-task-view';
-import { TableLayout } from './features/table/containers/table-layout/table-layout';
+import { TableView } from './features/table/containers/table-view/table-view';
 import { routes } from './shared/utils/routes';
 
 const StepUsers = lazy(
@@ -20,26 +19,7 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path={routes.home.path} element={<RecruitmentTaskView />} />
-      <Route
-        path="table"
-        element={
-          <>
-            <Hero
-              title="Browse all users and extend for more info."
-              subtitle={
-                <>
-                  Then you can check out their posts and the comments on those
-                  posts.{' '}
-                  <span role="img" aria-label="Shushing Face">
-                    😇
-                  </span>
-                </>
-              }
-            />
-            <TableLayout />
-          </>
-        }
-      >
+      <Route path="table" element={<TableView />}>
         <Route
           path={routes.table.users.path}
           element={
