@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom';
 
-import { routes } from '../../../../shared/utils/routes';
+import { routes } from '../../../../../shared/utils/routes';
 
 export function Breadcrumbs() {
   const { userId, postId } = useParams();

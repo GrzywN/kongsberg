@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
-import { MoreInfoPost } from '../../components/more-info-post/more-info-post';
+import { MoreInfoPost } from '../../components/displaying-data/more-info-post/more-info-post';
 import { TableNextStepButton } from '../../components/navigation/table-next-step-button/table-next-step-button';
-import { TableHeader } from '../../components/table-header/table-header';
-import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
+import { TableHeader } from '../../components/table-related/table-header/table-header';
+import { TableRowAccordion } from '../../components/table-related/table-row-accordion/table-row-accordion';
 import { usePostsQuery } from '../../hooks/queries/use-posts-query';
 
 export function StepPosts() {
