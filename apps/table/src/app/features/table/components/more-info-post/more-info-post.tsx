@@ -1,10 +1,10 @@
 import { Post } from '@kongsberg/table/fetch';
 
-export interface PostBodyProps {
+export interface MoreInfoPostProps {
   post: Post;
 }
 
-export function PostBody(props: PostBodyProps) {
+export function MoreInfoPost(props: MoreInfoPostProps) {
   const { post } = props;
   const { id, title, body } = post;
 
@@ -20,4 +20,4 @@ export function PostBody(props: PostBodyProps) {
   );
 }
 
-export default PostBody;
+export default MoreInfoPost;

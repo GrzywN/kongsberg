@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
-import { DetailedUserInfo } from '../../components/detailed-user-info/detailed-user-info';
+import { MoreInfoUser } from '../../components/more-info-user/more-info-user';
 import { TableHeader } from '../../components/table-header/table-header';
 import { TableNextStepButton } from '../../components/table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
@@ -99,7 +99,7 @@ export function StepUsers() {
                 ]}
                 detailsBody={
                   <>
-                    <DetailedUserInfo user={user} />
+                    <MoreInfoUser user={user} />
                     <TableNextStepButton
                       className="mt-4 lg:hidden"
                       text="See user posts"

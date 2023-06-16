@@ -2,11 +2,11 @@ import { User } from '@kongsberg/table/fetch';
 
 import { UserInfoField } from '../user-info-field/user-info-field';
 
-export interface DetailedUserInfoProps {
+export interface MoreInfoUserProps {
   user: User;
 }
 
-export function DetailedUserInfo(props: DetailedUserInfoProps) {
+export function MoreInfoUser(props: MoreInfoUserProps) {
   const { user } = props;
   const { id, name, username, email, address, phone, website, company } = user;
 
@@ -32,4 +32,4 @@ export function DetailedUserInfo(props: DetailedUserInfoProps) {
   );
 }
 
-export default DetailedUserInfo;
+export default MoreInfoUser;

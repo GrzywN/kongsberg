@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 
-import DetailedUserInfo from './detailed-user-info';
+import { MoreInfoUser } from './more-info-user';
 
-describe('DetailedUserInfo', () => {
+describe('MoreInfoUser', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <DetailedUserInfo
+      <MoreInfoUser
         user={{
           id: 1,
           name: 'Leanne Graham',

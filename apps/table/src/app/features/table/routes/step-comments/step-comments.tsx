@@ -2,7 +2,7 @@ import { useIntersection } from '@mantine/hooks';
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { CommentBody } from '../../components/comment-body/comment-body';
+import { MoreInfoComment } from '../../components/more-info-comment/more-info-comment';
 import { TableHeader } from '../../components/table-header/table-header';
 import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
@@ -58,7 +58,7 @@ export function StepComments() {
                 key={comment.id}
                 itemKey={comment.id}
                 cols={[comment.id, comment.name, comment.email]}
-                detailsBody={<CommentBody comment={comment} />}
+                detailsBody={<MoreInfoComment comment={comment} />}
                 ref={ref}
               />
             ))}

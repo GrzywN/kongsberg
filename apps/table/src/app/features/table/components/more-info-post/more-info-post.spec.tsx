@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 
-import PostBody from './post-body';
+import MoreInfoPost from './more-info-post';
 
-describe('PostBody', () => {
+describe('MoreInfoPost', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <PostBody
+      <MoreInfoPost
         post={{
           userId: 2,
           id: 11,

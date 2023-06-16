@@ -1,10 +1,10 @@
 import { Comment } from '@kongsberg/table/fetch';
 
-export interface CommentBodyProps {
+export interface MoreInfoCommentProps {
   comment: Comment;
 }
 
-export function CommentBody(props: CommentBodyProps) {
+export function MoreInfoComment(props: MoreInfoCommentProps) {
   const { comment } = props;
   const { id, name, email: author, body } = comment;
 
@@ -19,4 +19,4 @@ export function CommentBody(props: CommentBodyProps) {
   );
 }
 
-export default CommentBody;
+export default MoreInfoComment;

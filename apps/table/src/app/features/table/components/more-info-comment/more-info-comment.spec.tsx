@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
 
-import CommentBody from './comment-body';
+import MoreInfoComment from './more-info-comment';
 
-describe('CommentBody', () => {
+describe('MoreInfoComment', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <CommentBody
+      <MoreInfoComment
         comment={{
           postId: 1,
           id: 1,

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
-import { PostBody } from '../../components/post-body/post-body';
+import { MoreInfoPost } from '../../components/more-info-post/more-info-post';
 import { TableHeader } from '../../components/table-header/table-header';
 import { TableNextStepButton } from '../../components/table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
@@ -89,7 +89,7 @@ export function StepPosts() {
                   ]}
                   detailsBody={
                     <>
-                      <PostBody post={post} />
+                      <MoreInfoPost post={post} />
                       <TableNextStepButton
                         className="mt-4 lg:hidden"
                         text="See user posts"
