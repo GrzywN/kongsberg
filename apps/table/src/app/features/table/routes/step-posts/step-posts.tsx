@@ -4,11 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
+import { PostBody } from '../../components/post-body/post-body';
+import { TableHeader } from '../../components/table-header/table-header';
+import { TableNextStepButton } from '../../components/table-next-step-button/table-next-step-button';
+import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
 import { usePostsQuery } from '../../hooks/queries/use-posts-query';
-import { PostBody } from '../post-body/post-body';
-import { TableHeader } from '../table-header/table-header';
-import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
-import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepPosts() {
   const { userId } = useParams();

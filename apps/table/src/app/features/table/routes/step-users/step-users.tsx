@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
+import { DetailedUserInfo } from '../../components/detailed-user-info/detailed-user-info';
+import { TableHeader } from '../../components/table-header/table-header';
+import { TableNextStepButton } from '../../components/table-next-step-button/table-next-step-button';
+import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
 import { useUsersQuery } from '../../hooks/queries/use-users-query';
-import { DetailedUserInfo } from '../detailed-user-info/detailed-user-info';
-import { TableHeader } from '../table-header/table-header';
-import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
-import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepUsers() {
   const {

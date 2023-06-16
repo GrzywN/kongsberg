@@ -2,10 +2,10 @@ import { useIntersection } from '@mantine/hooks';
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { CommentBody } from '../../components/comment-body/comment-body';
+import { TableHeader } from '../../components/table-header/table-header';
+import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
-import { CommentBody } from '../comment-body/comment-body';
-import { TableHeader } from '../table-header/table-header';
-import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepComments() {
   const { postId } = useParams();

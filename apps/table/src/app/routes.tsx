@@ -7,13 +7,13 @@ import { Table } from './features/table/components/table/table';
 import { routes } from './shared/utils/routes';
 
 const StepUsers = lazy(
-  () => import('./features/table/components/step-users/step-users')
+  () => import('./features/table/routes/step-users/step-users')
 );
 const StepPosts = lazy(
-  () => import('./features/table/components/step-posts/step-posts')
+  () => import('./features/table/routes/step-posts/step-posts')
 );
 const StepComments = lazy(
-  () => import('./features/table/components/step-comments/step-comments')
+  () => import('./features/table/routes/step-comments/step-comments')
 );
 
 export function AppRoutes() {
