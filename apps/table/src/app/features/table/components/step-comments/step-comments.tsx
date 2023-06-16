@@ -38,6 +38,7 @@ export function StepComments() {
   return (
     <>
       <TableHeader>
+        <TableHeader.Column text="ID" isLoading={shouldDisplayLoadingState} />
         <TableHeader.Column
           text="Comment title"
           isLoading={shouldDisplayLoadingState}
@@ -56,7 +57,7 @@ export function StepComments() {
               <TableRowAccordion
                 key={comment.id}
                 itemKey={comment.id}
-                cols={[comment.name, comment.email]}
+                cols={[comment.id, comment.name, comment.email]}
                 detailsBody={<CommentBody comment={comment} />}
                 ref={ref}
               />

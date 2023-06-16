@@ -55,6 +55,7 @@ export function StepUsers() {
   return (
     <>
       <TableHeader>
+        <TableHeader.Column text="ID" isLoading={shouldDisplayLoadingState} />
         <TableHeader.Column text="Name" isLoading={shouldDisplayLoadingState} />
         <TableHeader.Column
           text="Username"
@@ -83,6 +84,7 @@ export function StepUsers() {
                 key={user.id}
                 itemKey={user.id}
                 cols={[
+                  user.id,
                   user.name,
                   user.username,
                   user.email,

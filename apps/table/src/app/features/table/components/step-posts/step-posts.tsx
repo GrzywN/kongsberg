@@ -56,6 +56,7 @@ export function StepPosts() {
   return (
     <>
       <TableHeader>
+        <TableHeader.Column text="ID" isLoading={shouldDisplayLoadingState} />
         <TableHeader.Column
           text="Post title"
           isLoading={shouldDisplayLoadingState}
@@ -76,6 +77,7 @@ export function StepPosts() {
                   key={post.id}
                   itemKey={post.id}
                   cols={[
+                    post.id,
                     post.title,
                     <TableNextStepButton
                       text="See post comments"
