@@ -25,12 +25,12 @@ export function AppRoutes() {
         element={
           <>
             <Hero
-              title="Select a user and see his posts"
+              title="Browse all users and extend for more info."
               subtitle={
                 <>
-                  After that you can select a post and see its comments{' '}
+                  Then you can check out their posts and the comments on those posts.{' '}
                   <span role="img" aria-label="Shushing Face">
-                    🤫
+                    😇
                   </span>
                 </>
               }
