@@ -12,7 +12,7 @@ export function TableHeaderColumn(props: TableHeaderColumnProps) {
   return (
     <th scope="col" className={`${alignRight ? 'text-right' : ''} px-6 py-3`}>
       <p className="inline-flex items-center gap-2">
-        {text} {isLoading && <LoadingSpinner />}
+        {text} <LoadingSpinner isLoading={isLoading} />
       </p>
     </th>
   );

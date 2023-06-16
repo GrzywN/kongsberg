@@ -1,7 +1,17 @@
-export function LoadingSpinner() {
+export interface LoadingSpinnerProps {
+  isLoading: boolean;
+}
+
+export function LoadingSpinner(props: LoadingSpinnerProps) {
+  const { isLoading } = props;
+
   return (
     <svg
-      className="shrink-0 animate-spin h-4 w-4"
+      className={`shrink-0 animate-spin h-4 w-4 transition-opacity ${
+        isLoading ? 'opacity-100' : 'opacity-0'
+      }`}
+      aria-busy={isLoading}
+      aria-hidden={!isLoading}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
