@@ -1,10 +1,10 @@
 import { RecruitmentTaskButton } from '../../shared/components/recruitment-task-button/recruitment-task-button';
 
-export interface DefaultLayoutProps {
+export interface GlobalLayoutProps {
   children: React.ReactNode;
 }
 
-export function DefaultLayout(props: DefaultLayoutProps) {
+export function GlobalLayout(props: GlobalLayoutProps) {
   const { children } = props;
 
   return (
@@ -15,4 +15,4 @@ export function DefaultLayout(props: DefaultLayoutProps) {
   );
 }
 
-export default DefaultLayout;
+export default GlobalLayout;

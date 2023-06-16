@@ -2,9 +2,9 @@ import { useIntersection } from '@mantine/hooks';
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { MoreInfoComment } from '../../components/more-info-comment/more-info-comment';
-import { TableHeader } from '../../components/table-header/table-header';
-import { TableRowAccordion } from '../../components/table-row-accordion/table-row-accordion';
+import { MoreInfoComment } from '../../components/displaying-data/more-info-comment/more-info-comment';
+import { TableHeader } from '../../components/table-related/table-header/table-header';
+import { TableRowAccordion } from '../../components/table-related/table-row-accordion/table-row-accordion';
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
 
 export function StepComments() {

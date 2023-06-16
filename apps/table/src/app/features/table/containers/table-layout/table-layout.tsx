@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
-import { Breadcrumbs } from '../breadcrumbs/breadcrumbs';
+import { Breadcrumbs } from '../../components/navigation/breadcrumbs/breadcrumbs';
 
-export function Table() {
+export function TableLayout() {
   return (
     <section className="mt-8 grid text-xs text-left text-neutral-700 font-semibold lg:text-sm">
       <Breadcrumbs />
@@ -15,4 +15,4 @@ export function Table() {
   );
 }
 
-export default Table;
+export default TableLayout;

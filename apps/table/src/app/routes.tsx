@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { RecruitmentTaskView } from './features/recruitment-task/containers/recruitment-task-view/recruitment-task-view';
-import { Table } from './features/table/components/table/table';
+import { TableLayout } from './features/table/containers/table-layout/table-layout';
 import { routes } from './shared/utils/routes';
 
 const StepUsers = lazy(
@@ -36,7 +36,7 @@ export function AppRoutes() {
                 </>
               }
             />
-            <Table />
+            <TableLayout />
           </>
         }
       >

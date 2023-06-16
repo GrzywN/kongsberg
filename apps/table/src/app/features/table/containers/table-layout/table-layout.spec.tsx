@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import Table from './table';
+import { TableLayout } from './table-layout';
 
-describe('Table', () => {
+describe('TableLayout', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <MemoryRouter>
-        <Table />
+        <TableLayout />
       </MemoryRouter>
     );
     expect(baseElement).toBeTruthy();

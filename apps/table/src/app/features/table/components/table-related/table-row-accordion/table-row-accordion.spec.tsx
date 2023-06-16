@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
+import { TableNextStepButton } from '../navigation/table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from './table-row-accordion';
 
 Object.defineProperty(window, 'matchMedia', {
