@@ -6,6 +6,7 @@ import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
 import { usePostsQuery } from '../../hooks/queries/use-posts-query';
 import { PostBody } from '../post-body/post-body';
+import { TableHeader } from '../table-header/table-header';
 import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
@@ -36,10 +37,6 @@ export function StepPosts() {
     return <caption>An error occurred!</caption>;
   }
 
-  if (isLoading || !postsData) {
-    return <caption>Loading...</caption>;
-  }
-
   const handleGoToPostCommentsClick = () => {
     return (postId: number) => {
       navigate(routes.table.comments.url(String(userId), String(postId)));
@@ -54,46 +51,45 @@ export function StepPosts() {
     };
   };
 
-  const _postsData = postsData.pages.flatMap((page) => page);
+  const shouldDisplayLoadingState = isLoading || isFetchingNextPage;
 
   return (
     <>
-      <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
-        <tr>
-          <th scope="col" className="px-6 py-3">
-            Post title
-          </th>
-          <th scope="col" className="px-6 py-3 text-right">
-            Action
-          </th>
-        </tr>
-      </thead>
+      <TableHeader>
+        <TableHeader.Column
+          text="Post title"
+          isLoading={shouldDisplayLoadingState}
+        />
+        <TableHeader.Column
+          text="Action"
+          isLoading={shouldDisplayLoadingState}
+          alignRight
+        />
+      </TableHeader>
       <tbody>
-        {_postsData.map((post) => {
-          return (
-            <TableRowAccordion
-              key={post.id}
-              itemKey={post.id}
-              cols={[
-                post.title,
-                <TableNextStepButton
-                  text="See post comments"
-                  onClick={() => handleGoToPostCommentsClick()(post.id)}
-                  onKeyDown={(e) =>
-                    handleGoToPostCommentsKeyboardPress(e)(post.id)
-                  }
-                />,
-              ]}
-              detailsBody={<PostBody post={post} />}
-              ref={ref}
-            />
-          );
-        })}
-        {isFetchingNextPage && (
-          <tr>
-            <td>Next page is loading...</td>
-          </tr>
-        )}
+        {postsData &&
+          postsData.pages
+            .flatMap((page) => page)
+            .map((post) => {
+              return (
+                <TableRowAccordion
+                  key={post.id}
+                  itemKey={post.id}
+                  cols={[
+                    post.title,
+                    <TableNextStepButton
+                      text="See post comments"
+                      onClick={() => handleGoToPostCommentsClick()(post.id)}
+                      onKeyDown={(e) =>
+                        handleGoToPostCommentsKeyboardPress(e)(post.id)
+                      }
+                    />,
+                  ]}
+                  detailsBody={<PostBody post={post} />}
+                  ref={ref}
+                />
+              );
+            })}
       </tbody>
     </>
   );

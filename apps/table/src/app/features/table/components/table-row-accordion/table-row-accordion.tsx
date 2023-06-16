@@ -44,17 +44,13 @@ export const TableRowAccordion = forwardRef<
         onKeyDown={handleKeyDown}
       >
         {cols.map((col, idx) => {
-          if (idx === 0) {
-            return (
-              <td className="px-6 py-4 w-full" key={idx}>
-                {col}
-              </td>
-            );
-          }
-
           if (idx === cols.length - 1) {
             return (
-              <td className="pr-6 py-4 grid md:flex gap-2" key={idx} ref={ref}>
+              <td
+                className="px-6 py-4 grid md:flex justify-end gap-2"
+                key={idx}
+                ref={ref}
+              >
                 {col}
               </td>
             );

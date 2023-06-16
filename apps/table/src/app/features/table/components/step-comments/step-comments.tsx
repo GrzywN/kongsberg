@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useCommentsQuery } from '../../hooks/queries/use-comments-query';
 import { CommentBody } from '../comment-body/comment-body';
+import { TableHeader } from '../table-header/table-header';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
 export function StepComments() {
@@ -32,39 +33,34 @@ export function StepComments() {
     return <caption>An error occurred!</caption>;
   }
 
-  if (isLoading || !commentsData) {
-    return <caption>Loading...</caption>;
-  }
-
-  const _commentsData = commentsData.pages.flatMap((page) => page);
+  const shouldDisplayLoadingState = isLoading || isFetchingNextPage;
 
   return (
     <>
-      <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
-        <tr>
-          <th scope="col" className="px-6 py-3">
-            Comment title
-          </th>
-          <th scope="col" className="px-6 py-3 text-right">
-            Email
-          </th>
-        </tr>
-      </thead>
+      <TableHeader>
+        <TableHeader.Column
+          text="Comment title"
+          isLoading={shouldDisplayLoadingState}
+        />
+        <TableHeader.Column
+          text="Email"
+          isLoading={shouldDisplayLoadingState}
+          alignRight
+        />
+      </TableHeader>
       <tbody>
-        {_commentsData.map((comment) => (
-          <TableRowAccordion
-            key={comment.id}
-            itemKey={comment.id}
-            cols={[comment.name, comment.email]}
-            detailsBody={<CommentBody comment={comment} />}
-            ref={ref}
-          />
-        ))}
-        {isFetchingNextPage && (
-          <tr>
-            <td>Next page is loading...</td>
-          </tr>
-        )}
+        {commentsData &&
+          commentsData.pages
+            .flatMap((page) => page)
+            .map((comment) => (
+              <TableRowAccordion
+                key={comment.id}
+                itemKey={comment.id}
+                cols={[comment.name, comment.email]}
+                detailsBody={<CommentBody comment={comment} />}
+                ref={ref}
+              />
+            ))}
       </tbody>
     </>
   );

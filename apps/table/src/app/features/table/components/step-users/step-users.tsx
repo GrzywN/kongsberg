@@ -6,6 +6,7 @@ import { ENTER } from '../../../../shared/utils/constants';
 import { routes } from '../../../../shared/utils/routes';
 import { useUsersQuery } from '../../hooks/queries/use-users-query';
 import { DetailedUserInfo } from '../detailed-user-info/detailed-user-info';
+import { TableHeader } from '../table-header/table-header';
 import { TableNextStepButton } from '../table-next-step-button/table-next-step-button';
 import { TableRowAccordion } from '../table-row-accordion/table-row-accordion';
 
@@ -35,10 +36,6 @@ export function StepUsers() {
     return <caption>An error occurred!</caption>;
   }
 
-  if (isLoading || !usersData) {
-    return <caption>Loading...</caption>;
-  }
-
   const handleGoToUserPostsClick = () => {
     return (userId: number) => {
       navigate(routes.table.posts.url(String(userId)));
@@ -53,54 +50,55 @@ export function StepUsers() {
     };
   };
 
-  const _usersData = usersData.pages.flatMap((page) => page);
+  const shouldDisplayLoadingState = isLoading || isFetchingNextPage;
 
   return (
     <>
-      <thead className="sticky top-0 text-base text-primary-900 uppercase bg-neutral-50 font-bold">
-        <tr>
-          <th scope="col" className="px-6 py-3">
-            Name
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Username
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Email
-          </th>
-          <th scope="col" className="px-6 py-3">
-            Phone number
-          </th>
-          <th scope="col" className="px-6 py-3 text-right">
-            Action
-          </th>
-        </tr>
-      </thead>
+      <TableHeader>
+        <TableHeader.Column text="Name" isLoading={shouldDisplayLoadingState} />
+        <TableHeader.Column
+          text="Username"
+          isLoading={shouldDisplayLoadingState}
+        />
+        <TableHeader.Column
+          text="Email"
+          isLoading={shouldDisplayLoadingState}
+        />
+        <TableHeader.Column
+          text="Phone number"
+          isLoading={shouldDisplayLoadingState}
+        />
+        <TableHeader.Column
+          text="Action"
+          isLoading={shouldDisplayLoadingState}
+          alignRight
+        />
+      </TableHeader>
       <tbody>
-        {_usersData.map((user) => (
-          <TableRowAccordion
-            key={user.id}
-            itemKey={user.id}
-            cols={[
-              user.name,
-              user.username,
-              user.email,
-              user.phone,
-              <TableNextStepButton
-                text="See user posts"
-                onClick={() => handleGoToUserPostsClick()(user.id)}
-                onKeyDown={(e) => handleGoToUserPostsKeyboardPress(e)(user.id)}
-              />,
-            ]}
-            detailsBody={<DetailedUserInfo user={user} />}
-            ref={ref}
-          />
-        ))}
-        {isFetchingNextPage && (
-          <tr>
-            <td>Next page is loading...</td>
-          </tr>
-        )}
+        {usersData &&
+          usersData.pages
+            .flatMap((page) => page)
+            .map((user) => (
+              <TableRowAccordion
+                key={user.id}
+                itemKey={user.id}
+                cols={[
+                  user.name,
+                  user.username,
+                  user.email,
+                  user.phone,
+                  <TableNextStepButton
+                    text="See user posts"
+                    onClick={() => handleGoToUserPostsClick()(user.id)}
+                    onKeyDown={(e) =>
+                      handleGoToUserPostsKeyboardPress(e)(user.id)
+                    }
+                  />,
+                ]}
+                detailsBody={<DetailedUserInfo user={user} />}
+                ref={ref}
+              />
+            ))}
       </tbody>
     </>
   );
