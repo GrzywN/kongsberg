@@ -28,7 +28,8 @@ export function AppRoutes() {
               title="Browse all users and extend for more info."
               subtitle={
                 <>
-                  Then you can check out their posts and the comments on those posts.{' '}
+                  Then you can check out their posts and the comments on those
+                  posts.{' '}
                   <span role="img" aria-label="Shushing Face">
                     😇
                   </span>

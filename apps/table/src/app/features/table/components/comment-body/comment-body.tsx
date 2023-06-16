@@ -14,9 +14,7 @@ export function CommentBody(props: CommentBodyProps) {
         {name} (Comment ID: {id})
       </h2>
       <p>{author}</p>
-      <div className="mt-4 grid gap-2 max-w-prose">
-        <p>{body}</p>
-      </div>
+      <p className="mt-4 grid gap-2 max-w-prose">{body}</p>
     </div>
   );
 }
